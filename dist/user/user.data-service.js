@@ -17,11 +17,40 @@ let UserDataService = class UserDataService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    findAll() {
-        return this.prisma.user.findMany();
+    async findAll() {
+        return this.prisma.user.findMany({
+            select: {
+                id: true,
+                email: true,
+                password: true,
+                name: true,
+                createdAt: true,
+            },
+        });
     }
-    create(data) {
-        return this.prisma.user.create({ data });
+    async findByEmail(email) {
+        return this.prisma.user.findUnique({
+            where: { email },
+            select: {
+                id: true,
+                email: true,
+                password: true,
+                name: true,
+                createdAt: true,
+            },
+        });
+    }
+    async create(data) {
+        return this.prisma.user.create({
+            data,
+            select: {
+                id: true,
+                email: true,
+                password: true,
+                name: true,
+                createdAt: true,
+            },
+        });
     }
 };
 exports.UserDataService = UserDataService;

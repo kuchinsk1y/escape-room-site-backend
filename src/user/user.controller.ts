@@ -11,7 +11,7 @@ export class UserController {
   }
 
   @Post()
-  createUser(@Body() body: { email: string; name?: string }) {
+  createUser(@Body() body: { email: string; password: string; name?: string }) {
     return this.userService.create(body);
   }
 }

@@ -1,20 +1,13 @@
 import { PrismaService } from '../prisma/prisma.service';
+import { User } from './user.model';
 export declare class UserDataService {
     private prisma;
     constructor(prisma: PrismaService);
-    findAll(): import("generated/prisma").Prisma.PrismaPromise<{
-        id: number;
-        email: string;
-        name: string | null;
-        createdAt: Date;
-    }[]>;
+    findAll(): Promise<User[]>;
+    findByEmail(email: string): Promise<User | null>;
     create(data: {
         email: string;
-        name?: string;
-    }): import("generated/prisma").Prisma.Prisma__UserClient<{
-        id: number;
-        email: string;
-        name: string | null;
-        createdAt: Date;
-    }, never, import("generated/prisma/runtime/library").DefaultArgs, import("generated/prisma").Prisma.PrismaClientOptions>;
+        password: string;
+        name?: string | null;
+    }): Promise<User>;
 }

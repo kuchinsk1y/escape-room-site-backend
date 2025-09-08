@@ -20,6 +20,9 @@ let UserService = class UserService {
     findAll() {
         return this.userData.findAll();
     }
+    findByEmail(email) {
+        return this.userData.findByEmail(email);
+    }
     create(data) {
         return this.userData.create(data);
     }
